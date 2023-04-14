@@ -19,11 +19,13 @@ public class Movement : MonoBehaviour
 
     private void OnEnable()
     {
+        //Register event
         _inputReader.moveEvent += OnMove;
     }
 
     private void OnDisable()
     {
+        //Unregister event to prevent reference errors for object lifetime.
         _inputReader.moveEvent -= OnMove;
     }
 
@@ -35,9 +37,8 @@ public class Movement : MonoBehaviour
 
     private void CalculateMovement()
     {
-
+        //Set velocity to the unit vector with the speed multiplier (scalar)
         _rb.velocity = _inputDirection * _movementSpeed;
-
     }
 
 
