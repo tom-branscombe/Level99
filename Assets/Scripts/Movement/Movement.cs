@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
 
-    [SerializeField] private InputReaderSO _inputReader = default;
+    [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField] float _movementSpeed = 5.0f;
+    Rigidbody2D _rb;
+    Vector2 _inputDirection;
 
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnEnable()
     {
@@ -19,13 +28,15 @@ public class Movement : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         CalculateMovement();
     }
 
     private void CalculateMovement()
     {
+
+        _rb.velocity = _inputDirection * _movementSpeed;
 
     }
 
@@ -34,7 +45,7 @@ public class Movement : MonoBehaviour
 
     private void OnMove(Vector2 inputVector)
     {
-        Debug.Log(inputVector.x);
+        _inputDirection = inputVector.normalized;
     }
 
 }
