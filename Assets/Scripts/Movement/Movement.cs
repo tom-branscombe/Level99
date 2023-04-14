@@ -1,14 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
-
+    [Header("Input Reader")]
     [SerializeField] InputReaderSO _inputReader = default;
+
+    [Header("Movement Parameters")]
     [SerializeField] float _movementSpeed = 5.0f;
+
+
+    //private vars
+    private float _previousSpeed;
+
     Rigidbody2D _rb;
     Vector2 _inputDirection;
 
@@ -37,8 +42,23 @@ public class Movement : MonoBehaviour
 
     private void CalculateMovement()
     {
-        //Set velocity to the unit vector with the speed multiplier (scalar)
-        _rb.velocity = _inputDirection * _movementSpeed;
+
+        float targetSpeed = Mathf.Clamp01(_inputDirection.magnitude);
+        if (targetSpeed > 0f)
+        {
+            targetSpeed = _movementSpeed;
+        }
+        //If player is moving get constant movespeed.
+
+        //Interpolate between previousSpeed and targetSpeed
+        targetSpeed = Mathf.Lerp(_previousSpeed, targetSpeed, Time.deltaTime * 4f);
+
+        //Add to player velocity.
+        _rb.velocity = _inputDirection * targetSpeed;
+
+        //Set the previous speed.
+        _previousSpeed = targetSpeed;
+
     }
 
 
