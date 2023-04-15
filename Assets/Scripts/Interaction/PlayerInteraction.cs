@@ -15,8 +15,9 @@ public class PlayerInteraction : MonoBehaviour
     
     private List<Interactable> interactablesInRange;
 
-    [Header("Input Reader")]
+    [Header("Scriptable Objects")]
     [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField] InteractableEventChannelSO interactEvent = default;
 
     [Header("Interaction Settings")]
     //Radius changed on startup.
@@ -112,6 +113,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         string printString = interact ? interact.name : "null";
         Debug.Log(printString);
+        interactEvent.RaiseEvent(interact);
 
     }
 
