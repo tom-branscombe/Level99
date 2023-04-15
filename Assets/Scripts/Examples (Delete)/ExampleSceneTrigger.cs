@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class ExampleSceneTrigger : MonoBehaviour
 {
-    [SerializeField] StringEventChannelSO SceneChanger;
-    [SerializeField] bool _trigger = false;
-    [SerializeField] string sceneName = "MainMenu";
+    [SerializeField] PassageEventSO SceneChanger;
+    [SerializeField] DoorSO passage;
+    [SerializeField] ConnectionSO connection;
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_trigger)
-            SceneChanger.RaiseEvent(sceneName);
+        print("1");
+        if(collision.tag == "Player")
+            SceneChanger.RaiseEvent(passage, connection, passage.sceneToLoad);
     }
 }

@@ -3,16 +3,26 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] StringEventChannelSO _sceneChanger;
+    [SerializeField] PassageEventSO _sceneChanger;
+    [SerializeField] GameObject Player;
 
-    //example (will be private event based)
     private void OnEnable()
     {
-        _sceneChanger.OnEventRaised += ChangeScene;
+        _sceneChanger.OnPassageRaised += ChangeScene;
     }
 
-    private void ChangeScene(string input)
+private void ChangeScene(DoorSO entered, ConnectionSO connection, string sceneToLoad)
     {
-        SceneManager.LoadScene(input);
+        print("Hello");
+        SceneManager.LoadScene(sceneToLoad);
+        foreach (var route in connection.routes)
+        {
+            if(route.passageLetter != entered.passageLetter)
+            {
+                //this will be the exit not entrance
+                //player will spawn at position
+                Instantiate(Player, new Vector2(route.position.x, route.position.y), Quaternion.identity);
+            }
+        }
     }
 }

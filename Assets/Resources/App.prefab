@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40279c7ed21db8c41a9ecef1639b36e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneChanger: {fileID: 11400000, guid: 1cdfb97718688824ebd5e08a3abe34e3, type: 2}
+  _sceneChanger: {fileID: 11400000, guid: 9a1b945f034a28b488a233eb03771e70, type: 2}
+  Player: {fileID: 1027680878532123567, guid: dc2a78604f580fa4ebda59e5b536689c, type: 3}
 --- !u!1 &8916262832391592533
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,3 +92,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneChanger: {fileID: 0}
+  Player: {fileID: 0}
