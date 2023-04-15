@@ -11,6 +11,7 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
 
 
     public event UnityAction<Vector2> moveEvent;
+    public event UnityAction interactionEvent;
     private Gameplay gameplay;
 
     private void OnEnable()
@@ -33,6 +34,15 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
         //If event is being listened, call the event with the vector2 (movement axis)
         moveEvent?.Invoke(context.ReadValue<Vector2>());
     }
+
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            interactionEvent?.Invoke();
+        }
+    }
+
 
 
     public void EnableGameplayInput()
