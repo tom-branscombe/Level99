@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class TEST_INTERACTABLE : Interactable
 {
-
+    public override string Tooltip
+    {
+        get { return "Tooltip "; }
+    }
 
     public override void OnInteract()
     {

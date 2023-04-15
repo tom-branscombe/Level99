@@ -15,8 +15,9 @@ public class PlayerInteraction : MonoBehaviour
     
     private List<Interactable> interactablesInRange;
 
-    [Header("Input Reader")]
+    [Header("Scriptable Objects")]
     [SerializeField] InputReaderSO _inputReader = default;
+    [SerializeField] InteractableEventChannelSO interactEvent = default;
 
     [Header("Interaction Settings")]
     //Radius changed on startup.
@@ -46,8 +47,27 @@ public class PlayerInteraction : MonoBehaviour
     private void FixedUpdate()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, interactionMask);
-        currentClosestInteractable = getClosestInteractable(hitColliders);
+
+
+        var newClosest = getClosestInteractable(hitColliders);
+        if (newClosest == null)
+        {
+            //Send null string event, removing the tooltip.
+            OnNewInteractable(null);
+            currentClosestInteractable = null;
+            return;
+        }
+        if (newClosest == currentClosestInteractable) return;
+
+        //Invoke new closest event to UI
+        OnNewInteractable(newClosest);
+
+        currentClosestInteractable = newClosest;
+
+        
     }
+
+
 
 
     Interactable getClosestInteractable(Collider2D[] colliders)
@@ -89,6 +109,13 @@ public class PlayerInteraction : MonoBehaviour
         currentClosestInteractable.OnInteract();
     }
 
+    private void OnNewInteractable(Interactable interact)
+    {
+        string printString = interact ? interact.name : "null";
+        Debug.Log(printString);
+        interactEvent.RaiseEvent(interact);
+
+    }
 
 
 }
