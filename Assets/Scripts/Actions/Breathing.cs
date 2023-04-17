@@ -31,6 +31,7 @@ public class Breathing : MonoBehaviour
 
     private void Update()
     {
+        //trigger
         if (Input.GetKeyDown(KeyCode.B))
         {
             OnBreatheEvent();
@@ -47,6 +48,7 @@ public class Breathing : MonoBehaviour
             if (!(mover.transform.localPosition.y > targetPos * 0.1f + leeway || mover.transform.localPosition.y < targetPos * 0.1f - leeway))
             {
                 TargetHit();
+                //enemy doesnt follow
             }
 
             mover.transform.localPosition += new Vector3(0, dir, 0);
