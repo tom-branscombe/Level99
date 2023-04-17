@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581053b23d69f5843bfcc7e37d4040fc, type: 3}
-  m_Name: DarknessChannel
+  m_Name: StartDarknessEvent
   m_EditorClassIdentifier: 
