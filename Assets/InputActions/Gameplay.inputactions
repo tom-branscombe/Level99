@@ -4,8 +4,30 @@
         {
             "name": "UI",
             "id": "50a024c6-d362-4adb-81bc-191424d4c67b",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Breathe",
+                    "type": "Button",
+                    "id": "a4e9c8fd-c6b7-4829-849c-6d4ad105c2c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "10b3e588-4175-43d2-9fec-738f3b7d03aa",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Breathe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         },
         {
             "name": "Player",
