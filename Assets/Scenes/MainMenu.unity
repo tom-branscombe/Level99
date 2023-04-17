@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: _connection
       value: 
       objectReference: {fileID: 11400000, guid: 62f4b7c34df33d5469d94d168e9c9cf7, type: 2}
+    - target: {fileID: 1506418820950367100, guid: d9b3324f50fe102459eaf8b8e1164234, type: 3}
+      propertyPath: _targetSceneName
+      value: SandBox
+      objectReference: {fileID: 0}
     - target: {fileID: 1506418820950367101, guid: d9b3324f50fe102459eaf8b8e1164234, type: 3}
       propertyPath: m_RootOrder
       value: 2

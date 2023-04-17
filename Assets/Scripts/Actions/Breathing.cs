@@ -6,13 +6,13 @@ public class Breathing : MonoBehaviour
     [SerializeField] InputReaderSO inputReaderSO = default;
 
     [Header("UI")]
-    [SerializeField] GameObject mover; 
+    [SerializeField] GameObject mover;
+    [SerializeField] bool tempBreatheEvent = true;
 
     private void OnEnable()
     {
         //Register event
         inputReaderSO.breatheEvent += OnBreathe;
-        print("Breathing");
     }
 
     private void OnDisable()
@@ -23,7 +23,10 @@ public class Breathing : MonoBehaviour
 
     private void OnBreathe(float input)
     {
+        if (!tempBreatheEvent) return;
+        //if the player is not in darkness do not continue
         var activity = input > 0 ? true : false;
         if (!activity) return;
+        print(input);
     }
 }

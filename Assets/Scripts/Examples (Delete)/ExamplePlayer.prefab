@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReaderSO: {fileID: 11400000, guid: c2c79d78e90dd4340861c79f41bf2cb2, type: 2}
   mover: {fileID: 8879027986336118039}
+  tempBreatheEvent: 1
 --- !u!1 &8879027986336118039
 GameObject:
   m_ObjectHideFlags: 0
