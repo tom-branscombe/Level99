@@ -42,7 +42,7 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""10b3e588-4175-43d2-9fec-738f3b7d03aa"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Breathe"",

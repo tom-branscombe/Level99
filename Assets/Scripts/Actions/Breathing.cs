@@ -8,6 +8,7 @@ public class Breathing : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject mover;
     [SerializeField] bool tempBreatheEvent = true;
+    [SerializeField] bool holdinglocal = false;
 
     private void OnEnable()
     {
@@ -21,12 +22,15 @@ public class Breathing : MonoBehaviour
         inputReaderSO.breatheEvent -= OnBreathe;
     }
 
-    private void OnBreathe(float input)
+    private void Update()
     {
         if (!tempBreatheEvent) return;
-        //if the player is not in darkness do not continue
-        var activity = input > 0 ? true : false;
-        if (!activity) return;
-        print(input);
+        var dir = holdinglocal ? 0.001f : -0.001f;
+        mover.GetComponent<RectTransform>().position += new Vector3(0, dir, 0);
+    }
+
+    private void OnBreathe(float input, bool holding)
+    {
+        holdinglocal = holding;
     }
 }
