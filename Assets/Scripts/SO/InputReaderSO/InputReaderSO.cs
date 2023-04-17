@@ -9,6 +9,7 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
 
     public event UnityAction<Vector2> moveEvent;
     public event UnityAction<float> breatheEvent;
+    public event UnityAction interactionEvent;
     private Gameplay gameplay;
 
     private void OnEnable()
@@ -36,6 +37,11 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
     public void OnBreathe(InputAction.CallbackContext context)
     {
         breatheEvent?.Invoke(context.ReadValue<float>());
+    }
+
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        interactionEvent?.Invoke();
     }
 
 
