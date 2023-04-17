@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,6 +8,7 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
 
 
     public event UnityAction<Vector2> moveEvent;
+    public event UnityAction<float> breatheEvent;
     public event UnityAction interactionEvent;
     private Gameplay gameplay;
 
@@ -20,6 +18,7 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
         {
             gameplay = new Gameplay();
             gameplay.Player.SetCallbacks(this);
+            gameplay.UI.SetCallbacks(this);
         }
         EnableGameplayInput();
     }
@@ -35,24 +34,26 @@ public class InputReaderSO : ScriptableObject, Gameplay.IPlayerActions, Gameplay
         moveEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnInteraction(InputAction.CallbackContext context)
+    public void OnBreathe(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            interactionEvent?.Invoke();
-        }
+        breatheEvent?.Invoke(context.ReadValue<float>());
     }
 
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        interactionEvent?.Invoke();
+    }
 
 
     public void EnableGameplayInput()
     {
         gameplay.Player.Enable();
+        gameplay.UI.Enable();
     }
 
     public void DisableGameplayInput()
     {
         gameplay.Player.Disable();
+        gameplay.UI.Disable();
     }
-
 }
