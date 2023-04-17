@@ -6,7 +6,8 @@ using UnityEngine.Tilemaps;
 public class Darkness : MonoBehaviour
 {
 
-    [SerializeField] VoidEventChannelSO _darknessEvent;
+    [SerializeField] VoidEventChannelSO _onDarknessStartEvent;
+    [SerializeField] VoidEventChannelSO _onDarknessLeaveEvent;
     [SerializeField] Tilemap _darkTiles;
 
 
@@ -49,12 +50,12 @@ public class Darkness : MonoBehaviour
 
     void OnDarkStartEvent()
     {
-        Debug.Log("Dark start,");
+        _onDarknessStartEvent.RaiseEvent();
     }
 
     void OnDarkEndEvent()
     {
-        Debug.Log("Dark end,");
+        _onDarknessLeaveEvent.RaiseEvent();
     }
 
 
