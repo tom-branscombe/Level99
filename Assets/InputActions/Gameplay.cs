@@ -26,8 +26,30 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
         {
             ""name"": ""UI"",
             ""id"": ""50a024c6-d362-4adb-81bc-191424d4c67b"",
-            ""actions"": [],
-            ""bindings"": []
+            ""actions"": [
+                {
+                    ""name"": ""Breathe"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4e9c8fd-c6b7-4829-849c-6d4ad105c2c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""10b3e588-4175-43d2-9fec-738f3b7d03aa"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Breathe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         },
         {
             ""name"": ""Player"",
@@ -161,6 +183,7 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
 }");
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Breathe = m_UI.FindAction("Breathe", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
@@ -225,10 +248,12 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Breathe;
     public struct UIActions
     {
         private @Gameplay m_Wrapper;
         public UIActions(@Gameplay wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Breathe => m_Wrapper.m_UI_Breathe;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,10 +263,16 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Breathe.started += instance.OnBreathe;
+            @Breathe.performed += instance.OnBreathe;
+            @Breathe.canceled += instance.OnBreathe;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
+            @Breathe.started -= instance.OnBreathe;
+            @Breathe.performed -= instance.OnBreathe;
+            @Breathe.canceled -= instance.OnBreathe;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -307,6 +338,7 @@ public partial class @Gameplay: IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IUIActions
     {
+        void OnBreathe(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {

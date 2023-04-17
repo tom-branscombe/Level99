@@ -61,9 +61,6 @@ public class Movement : MonoBehaviour
 
     }
 
-
-
-
     private void OnMove(Vector2 inputVector)
     {
         _inputDirection = inputVector.normalized;
