@@ -540,5 +540,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExamplePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4537181152956932510, guid: dc2a78604f580fa4ebda59e5b536689c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537181152956932510, guid: dc2a78604f580fa4ebda59e5b536689c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2a78604f580fa4ebda59e5b536689c, type: 3}
