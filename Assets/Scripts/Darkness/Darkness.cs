@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class Darkness : MonoBehaviour
 {
 
+    [SerializeField] VoidEventChannelSO _darknessEvent;
     [SerializeField] Tilemap _darkTiles;
 
 

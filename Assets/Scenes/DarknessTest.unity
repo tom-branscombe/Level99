@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced78c6e28372aa4a9c0fc2f1498e17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _darkTiles: {fileID: 0}
+  _darkTiles: {fileID: 1272922210}
 --- !u!1 &293234637
 GameObject:
   m_ObjectHideFlags: 0
