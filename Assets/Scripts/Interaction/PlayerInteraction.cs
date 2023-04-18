@@ -112,9 +112,7 @@ public class PlayerInteraction : MonoBehaviour
     private void OnNewInteractable(Interactable interact)
     {
         string printString = interact ? interact.name : "null";
-        Debug.Log(printString);
         interactEvent.RaiseEvent(interact);
-
     }
 
 
