@@ -5,13 +5,10 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     
+
     public abstract string Tooltip { get; }
 
-
-
     public abstract void OnInteract();
-
-
 
 
 }
